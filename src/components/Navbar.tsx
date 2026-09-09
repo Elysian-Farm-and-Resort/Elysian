@@ -19,10 +19,10 @@ export default function Navbar() {
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo} aria-label="Elysian Farms & Resort — Home">
           <Image
-            src="/logo2.png"
+            src="/logo.svg"
             alt="Elysian Farms & Resort"
-            width={140}
-            height={40}
+            width={120}
+            height={90}
             priority
           />
         </Link>

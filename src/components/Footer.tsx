@@ -68,7 +68,13 @@ export default function Footer() {
       <div className={`container ${styles.top}`}>
         <div className={styles.brandCol}>
           <Link href="/" className={styles.logo} aria-label="Elysian Farms & Resort — Home">
-            <Image src="/logo.png" alt="Elysian Farms & Resort" width={150} height={44} />
+            <Image 
+                src="/logo2.svg"
+                alt="Elysian Farms & Resort"
+                width={250} 
+                height={144}
+                priority 
+            />
           </Link>
           <p className={styles.tagline}>
             A managed countryside resort community — own a cottage, escape the city, and
