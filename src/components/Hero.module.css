@@ -1,0 +1,57 @@
+.staticHero {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    hsla(180, 100%, 5%, 0.55) 0%,
+    hsla(180, 100%, 5%, 0.75) 100%
+  );
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 620px;
+  padding: var(--container-padding);
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--golden-orange);
+  margin-bottom: var(--space-sm);
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  line-height: var(--leading-tight);
+  color: var(--text-inverse);
+}
+
+.subtext {
+  margin-top: var(--space-md);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--text-on-dark-muted);
+}
+
+.cta {
+  margin-top: var(--space-lg);
+}

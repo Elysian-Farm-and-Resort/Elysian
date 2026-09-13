@@ -1,0 +1,69 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: var(--surface-dark-alt);
+}
+
+.poster {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+}
+
+.videoFrame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.videoFrame[data-loaded="true"] {
+  opacity: 1;
+}
+
+/*
+  Oversize + center the iframe so YouTube's UI chrome (title bar,
+  end-screen suggestions) sits outside the visible crop area as much
+  as possible. Not perfect — an iframe embed will never be as clean as
+  a native <video> tag — but this is the standard workaround.
+*/
+.iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.77vh; /* 16:9 aspect ratio driven by viewport height */
+  height: 100vh;
+  min-width: 100%;
+  min-height: 56.25vw; /* 16:9 aspect ratio driven by viewport width */
+  transform: translate(-50%, -50%);
+  border: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(
+    180deg,
+    hsla(180, 100%, 5%, 0.55) 0%,
+    hsla(180, 100%, 5%, 0.75) 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: var(--container-padding);
+}

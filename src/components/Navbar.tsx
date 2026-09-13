@@ -1,28 +1,48 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { navItems, navCta, type NavItem } from '../data/navigation.data';
-import styles from './Navbar.module.css';
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { navItems, navCta, type NavItem } from "@/data/navigation.data";
+import styles from "./Navbar.module.css";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    // Only Home has a hero worth sitting transparently over — every other
+    // page keeps the solid header from the start.
+    if (!isHome) return;
+
+    const handleScroll = () => setIsScrolled(window.scrollY > 40);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHome]);
+
+  const isTransparent = isHome && !isScrolled;
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown((current) => (current === label ? null : label));
   };
 
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${isTransparent ? styles.transparent : ""}`}
+    >
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logo} aria-label="Elysian Farms & Resort — Home">
           <Image
-            src="/logo.svg"
+            src="/logo.png"
             alt="Elysian Farms & Resort"
-            width={120}
-            height={90}
+            width={100}
+            height={70}
             priority
           />
         </Link>
@@ -82,7 +102,7 @@ export default function Navbar() {
           className={styles.menuToggle}
           aria-expanded={mobileOpen}
           aria-controls="mobile-nav"
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-label={mobileOpen ? "Close menu" : "Open menu"}
           onClick={() => setMobileOpen((open) => !open)}
         >
           <span className={styles.hamburger} data-open={mobileOpen} />
@@ -143,7 +163,7 @@ function MobileNavItem({
       >
         {item.label}
         <span className={styles.chevron} aria-hidden="true">
-          {expanded ? '▴' : '▾'}
+          {expanded ? "▴" : "▾"}
         </span>
       </button>
       <ul className={styles.mobileSubList} data-open={expanded}>
