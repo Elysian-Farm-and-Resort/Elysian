@@ -93,9 +93,9 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <Link href={navCta.href} className={`btn btn-primary ${styles.ctaDesktop}`}>
+        {/* <Link href={navCta.href} className={`btn btn-primary ${styles.ctaDesktop}`}>
           {navCta.label}
-        </Link>
+        </Link> */}
 
         <button
           type="button"

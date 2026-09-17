@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import type { JournalPostSummary } from "../sanity/queries";
-import styles from "./Journalcard.module.css";
+import styles from "./JournalCard.module.css";
 
 type JournalCardProps = {
   post: JournalPostSummary;
