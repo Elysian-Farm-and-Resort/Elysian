@@ -5,7 +5,7 @@ import {
     getGalleryCategories,
     getGalleryCategoryBySlug,
     getGalleryImages,
-} from "@/sanity/queries";
+} from "../../../../../sanity/queries";
 import styles from './page.module.css';
 
 type Props = {

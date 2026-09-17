@@ -7,7 +7,7 @@ import TrustSnapshot from "@/components/TrustSnapshot";
 import CottagesTeaser from "@/components/CottagesTeaser";
 import ShowcaseSection from "@/components/ShowcaseSection";
 import AudienceSection from "@/components/AudienceSection";
-import { getJournalPosts } from "@/sanity/queries";
+import { getJournalPosts } from "../../../../sanity/queries";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {

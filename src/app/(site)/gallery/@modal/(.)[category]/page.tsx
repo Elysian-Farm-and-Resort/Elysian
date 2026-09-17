@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import GalleryModal from "@/components/GalleryModal";
 import GalleryGrid from "@/components/GalleryGrid";
-import { getGalleryCategoryBySlug, getGalleryImages } from "@/sanity/queries";
+import { getGalleryCategoryBySlug, getGalleryImages } from "../../../../../../sanity/queries";
 
 type Props = {
     params: Promise<{ category: string }>;

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import GalleryCard from "@/components/GalleryCard";
-import { getGalleryCategories, getGalleryImages } from "@/sanity/queries";
+import { getGalleryCategories, getGalleryImages } from "../../../../sanity/queries";
 import styles from './page.module.css';
 
 export const metadata: Metadata = {

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import type { GalleryImage } from '../sanity/queries';
+import type { GalleryImage } from '../../sanity/queries';
 import styles from './GalleryGrid.module.css';
 
 type GalleryGridProps = {

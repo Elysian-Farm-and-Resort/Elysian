@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import type { GalleryCategory } from '../sanity/queries';
+import type { GalleryCategory } from '../../sanity/queries';
 import styles from './GalleryCard.module.css';
 
 type GalleryCardProps = {
