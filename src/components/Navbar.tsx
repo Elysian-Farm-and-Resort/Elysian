@@ -13,20 +13,20 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const isHome = pathname === "/";
+  const isHeroPage = pathname === "/" || pathname === "/about";
 
   useEffect(() => {
-    // Only Home has a hero worth sitting transparently over — every other
-    // page keeps the solid header from the start.
-    if (!isHome) return;
+    // Hero pages begin with a transparent header and regain their background
+    // as the user scrolls beyond the hero area.
+    if (!isHeroPage) return;
 
     const handleScroll = () => setIsScrolled(window.scrollY > 40);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isHome]);
+  }, [isHeroPage]);
 
-  const isTransparent = isHome && !isScrolled;
+  const isTransparent = isHeroPage && !isScrolled;
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown((current) => (current === label ? null : label));

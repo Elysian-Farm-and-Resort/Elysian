@@ -1,0 +1,40 @@
+.ctaSection {
+  background-color: var(--evergreen);
+  text-align: center;
+}
+
+.ctaEyebrow {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--golden-orange);
+  margin-bottom: var(--space-2xs);
+}
+
+.ctaInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ctaHeading {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-inverse);
+  font-size: var(--text-2xl);
+}
+
+.ctaSubtext {
+  margin-top: var(--space-sm);
+  color: var(--text-on-dark-muted);
+  max-width: 50ch;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+}
