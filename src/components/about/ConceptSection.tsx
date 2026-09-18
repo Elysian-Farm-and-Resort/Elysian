@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { conceptContent, conceptCards } from "@/data/About.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "@/styles/ConceptSection.module.css";
+import styles from "@/styles/about/ConceptSection.module.css";
 
 export default function ConceptSection() {
   return (

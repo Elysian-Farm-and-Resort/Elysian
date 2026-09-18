@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { relaunchDate, launchCopy } from "../data/Launch.data";
-import styles from "./RelaunchCountdown.module.css";
+import { useSyncExternalStore } from "react";
+import { relaunchDate, launchCopy } from "@/data/Launch.data";
+import styles from "@/styles/home/RelaunchCountdown.module.css";
 
 type TimeLeft = {
   days: number;
@@ -23,31 +23,33 @@ function getTimeLeft(target: number): TimeLeft | null {
   };
 }
 
+function subscribeToClock(onChange: () => void) {
+  const interval = setInterval(onChange, 1000);
+  return () => clearInterval(interval);
+}
+
+function getCurrentSecond() {
+  return Math.floor(Date.now() / 1000);
+}
+
+function getServerSecond() {
+  return 0;
+}
+
 export default function RelaunchCountdown() {
   const target = new Date(relaunchDate).getTime();
 
-  // Start as null on both server and first client render to avoid a
-  // hydration mismatch, then compute the real value once mounted.
-  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setTimeLeft(getTimeLeft(target));
-
-    const interval = setInterval(() => {
-      const next = getTimeLeft(target);
-      setTimeLeft(next);
-      if (!next) clearInterval(interval);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [target]);
+  const currentSecond = useSyncExternalStore(
+    subscribeToClock,
+    getCurrentSecond,
+    getServerSecond,
+  );
+  const timeLeft = currentSecond === 0 ? null : getTimeLeft(target);
 
   // Nothing rendered until mounted (avoids hydration flash), and nothing
   // rendered once the date has passed — this component simply disappears
   // on its own after November, no code cleanup required.
-  if (!mounted || !timeLeft) return null;
+  if (!timeLeft) return null;
 
   return (
     <div className={styles.banner} role="status" aria-live="polite">

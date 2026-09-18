@@ -1,4 +1,4 @@
-import styles from "./JournalEmptyState.module.css";
+import styles from "@/styles/home/JournalEmptyState.module.css";
 
 export default function JournalEmptyState() {
   return (

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import GalleryModal from "@/components/GalleryModal";
+import GalleryModal from "@/components/home/GalleryModal";
 import GalleryGrid from "@/components/GalleryGrid";
 import { getGalleryCategoryBySlug, getGalleryImages } from "../../../../../../sanity/queries";
 

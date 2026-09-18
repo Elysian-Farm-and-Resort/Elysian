@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { showcasePanels } from "@/data/Home.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "./ShowcaseSection.module.css";
+import styles from "@/styles/home/ShowcaseSection.module.css";
 
 export default function ShowcaseSection() {
   return (

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
-import AboutHero from "@/components/about/AboutHero";
+import PageHero from "@/components/PageHero";
 import WhoWeAreSection from "@/components/about/WhoWeAreSection";
 import StorySection from "@/components/about/StorySection";
 import VisionMissionSection from "@/components/about/VisionMissionSection";
 import StandForSection from "@/components/about/StandForSection";
 import ConceptSection from "@/components/about/ConceptSection";
 import SplitFeature from "@/components/about/SplitFeature";
-import { locationContent, developmentContent, aboutFinalCta } from "@/data/About.data";
-import styles from "./about.module.css";
-import Link from "next/link";
+import FinalCtaSection from "@/components/FinalCtaSection";
+import { aboutHero, locationContent, developmentContent, aboutFinalCta } from "@/data/About.data";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -19,7 +18,14 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <AboutHero />
+      <PageHero
+        eyebrow={aboutHero.eyebrow}
+        headline={aboutHero.headline}
+        subtext={aboutHero.subtext}
+        location={aboutHero.location}
+        imageUrl={aboutHero.imageUrl}
+        imageAlt={aboutHero.imageAlt}
+      />
       <WhoWeAreSection />
       <StorySection />
       <VisionMissionSection />
@@ -50,21 +56,16 @@ export default function AboutPage() {
         background="page"
       />
 
-      <section className={`section ${styles.ctaSection}`}>
-        <div className={`container ${styles.ctaInner}`}>
-          <p className={styles.ctaEyebrow}>{aboutFinalCta.eyebrow}</p>
-          <h2 className={styles.ctaHeading}>{aboutFinalCta.heading}</h2>
-          <p className={styles.ctaSubtext}>{aboutFinalCta.subtext}</p>
-          <div className={styles.ctaActions}>
-            <Link href={aboutFinalCta.primaryCtaHref} className="btn btn-primary">
-              {aboutFinalCta.primaryCtaLabel}
-            </Link>
-            <Link href={aboutFinalCta.secondaryCtaHref} className="btn btn-secondary">
-              {aboutFinalCta.secondaryCtaLabel}
-            </Link>
-          </div>
-        </div>
-      </section>
+      <FinalCtaSection
+        eyebrow={aboutFinalCta.eyebrow}
+        heading={aboutFinalCta.heading}
+        subtext={aboutFinalCta.subtext}
+        primaryCta={{ label: aboutFinalCta.primaryCtaLabel, href: aboutFinalCta.primaryCtaHref }}
+        secondaryCta={{
+          label: aboutFinalCta.secondaryCtaLabel,
+          href: aboutFinalCta.secondaryCtaHref,
+        }}
+      />
     </>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import styles from "./VideoBackground.module.css";
+import styles from "@/styles/home/VideoBackground.module.css";
 
 type VideoStatus = "idle" | "loading" | "loaded" | "failed";
 

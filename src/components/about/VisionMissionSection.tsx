@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ourVision, visionPoints, ourMission } from "@/data/About.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "@/styles/VisionMissionSection.module.css";
+import styles from "@/styles/about/VisionMissionSection.module.css";
 
 export default function VisionMissionSection() {
   return (

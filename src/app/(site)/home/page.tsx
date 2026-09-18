@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import Hero from "@/components/Hero";
-import PillarsSection from "@/components/PillarsSection";
-import JournalCard from "@/components/JournalCard";
-import JournalEmptyState from "@/components/JournalEmptyState";
-import TrustSnapshot from "@/components/TrustSnapshot";
-import CottagesTeaser from "@/components/CottagesTeaser";
-import ShowcaseSection from "@/components/ShowcaseSection";
-import AudienceSection from "@/components/AudienceSection";
+import Hero from "@/components/home/Hero";
+import PillarsSection from "@/components/home/PillarsSection";
+import JournalCard from "@/components/home/JournalCard";
+import JournalEmptyState from "@/components/home/JournalEmptyState";
+import TrustSnapshot from "@/components/home/TrustSnapshot";
+import CottagesTeaser from "@/components/home/CottagesTeaser";
+import ShowcaseSection from "@/components/home/ShowcaseSection";
+import AudienceSection from "@/components/home/AudienceSection";
 import { getJournalPosts } from "../../../../sanity/queries";
 import styles from "./page.module.css";
 

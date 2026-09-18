@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { whoWeAre, whoWeAreTiles } from "@/data/About.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "@/styles/WhoWeAreSection.module.css";
+import styles from "@/styles/about/WhoWeAreSection.module.css";
 
 export default function WhoWeAreSection() {
   return (

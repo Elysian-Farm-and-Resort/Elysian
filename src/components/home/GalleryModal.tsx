@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from './GalleryModal.module.css';
+import styles from '@/styles/home/GalleryModal.module.css';
 
 type GalleryModalProps = {
   title: string;

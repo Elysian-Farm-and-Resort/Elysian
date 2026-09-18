@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ourStory } from "@/data/About.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "@/styles/StorySection.module.css";
+import styles from "@/styles/about/StorySection.module.css";
 
 export default function StorySection() {
   return (

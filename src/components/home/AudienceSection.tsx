@@ -1,11 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { trustPoints } from "@/data/Home.data";
+import { audienceSegments } from "@/data/Home.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "./TrustSnapshot.module.css";
+import styles from "@/styles/home/AudienceSection.module.css";
 
-export default function TrustSnapshot() {
+export default function AudienceSection() {
   return (
     <section className={`section ${styles.section}`}>
       <div className="container">
@@ -17,32 +18,35 @@ export default function TrustSnapshot() {
           variants={fadeUp}
           custom={0}
         >
-          Why Trust the Process
+          Who Elysian Is For
         </motion.p>
         <motion.h2
+          className={styles.heading}
           initial="hidden"
           whileInView="visible"
           viewport={revealViewport}
           variants={fadeUp}
           custom={0.08}
         >
-          Built for a clear-eyed decision.
+          Different reasons. One destination.
         </motion.h2>
 
-        <div className={styles.grid}>
-          {trustPoints.map((point, index) => (
+        <div className={styles.scrollRow}>
+          {audienceSegments.map((segment, index) => (
             <motion.div
-              key={point.id}
-              className={styles.item}
+              key={segment.id}
+              className={styles.card}
               initial="hidden"
               whileInView="visible"
               viewport={revealViewport}
               variants={fadeUp}
               custom={0.16 + index * 0.08}
             >
-              <span className={styles.number}>{String(index + 1).padStart(2, "0")}</span>
-              <h3 className={styles.title}>{point.title}</h3>
-              <p className={styles.description}>{point.description}</p>
+              <h3 className={styles.name}>{segment.name}</h3>
+              <p className={styles.quote}>&ldquo;{segment.quote}&rdquo;</p>
+              <Link href={segment.href} className={styles.link}>
+                {segment.ctaLabel} →
+              </Link>
             </motion.div>
           ))}
         </div>

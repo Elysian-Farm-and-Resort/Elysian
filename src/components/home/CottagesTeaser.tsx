@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { cottagePackages } from "@/data/Home.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "./CottagesTeaser.module.css";
+import styles from "@/styles/home/CottagesTeaser.module.css";
 
 export default function CottagesTeaser() {
   return (

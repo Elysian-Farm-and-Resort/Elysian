@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { pillars } from "@/data/Home.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "./PillarsSection.module.css";
+import styles from "@/styles/home/PillarsSection.module.css";
 
 export default function PillarsSection() {
   const [own, ...rest] = pillars;

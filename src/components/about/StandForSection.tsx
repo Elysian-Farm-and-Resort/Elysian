@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { standForContent, valuePoints } from "@/data/About.data";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "@/styles/StandForSection.module.css";
+import styles from "@/styles/about/StandForSection.module.css";
 
 export default function StandForSection() {
   return (

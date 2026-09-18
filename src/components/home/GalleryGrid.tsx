@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import type { GalleryImage } from '../../sanity/queries';
-import styles from './GalleryGrid.module.css';
+import type { GalleryImage } from '../../../sanity/queries';
+import styles from '@/styles/home/GalleryGrid.module.css';
 
 type GalleryGridProps = {
   images: GalleryImage[];

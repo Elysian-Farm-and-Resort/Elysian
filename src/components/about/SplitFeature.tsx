@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { fadeUp, revealViewport } from "@/lib/motion";
-import styles from "@/styles/SplitFeature.module.css";
+import styles from "@/styles/about/SplitFeature.module.css";
 
 type SplitFeatureProps = {
   eyebrow: string;
