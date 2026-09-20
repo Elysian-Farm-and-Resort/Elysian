@@ -13,7 +13,7 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const isHeroPage = pathname === "/" || pathname === "/about" || pathname === "/farm";
+  const isHeroPage = pathname === "/" || pathname === "/about" || pathname === "/farm" || pathname === "/contact" || pathname === "/gallery";
 
   useEffect(() => {
     // Hero pages begin with a transparent header and regain their background

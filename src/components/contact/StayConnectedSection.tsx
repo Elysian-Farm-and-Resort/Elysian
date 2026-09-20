@@ -1,0 +1,82 @@
+import Image from "next/image";
+import type { SiteSettings, SocialLink } from "../../../sanity/queries";
+import { stayConnectedContent } from "@/data/Contact.data";
+import styles from "@/styles/contact/StayConnectedSection.module.css";
+
+type StayConnectedSectionProps = {
+  settings: SiteSettings | null;
+};
+
+const SocialIcon = ({ size = 20 }: { size?: number }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.71 1.71" />
+    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+  </svg>
+);
+
+const iconMap: Partial<Record<SocialLink["platform"], React.ComponentType<{ size?: number }>>> = {
+  instagram: SocialIcon,
+  facebook: SocialIcon,
+  youtube: SocialIcon,
+  linkedin: SocialIcon,
+};
+
+export default function StayConnectedSection({ settings }: StayConnectedSectionProps) {
+  const socialLinks = settings?.socialLinks || [];
+
+  return (
+    <section className={styles.section}>
+      <Image
+        src={stayConnectedContent.imageUrl}
+        alt={stayConnectedContent.imageAlt}
+        fill
+        sizes="100vw"
+        className={styles.image}
+      />
+      <div className={styles.overlay} />
+
+      <div className={`container ${styles.inner}`}>
+        <div>
+          <p className={styles.eyebrow}>{stayConnectedContent.eyebrow}</p>
+          <h2 className={styles.heading}>{stayConnectedContent.heading}</h2>
+          <p className={styles.subtext}>{stayConnectedContent.subtext}</p>
+        </div>
+
+        {socialLinks.length > 0 && (
+          <div className={styles.socialRow}>
+            {socialLinks.map((social) => {
+              const Icon = iconMap[social.platform];
+              if (!Icon) return null;
+              return (
+                <a
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialItem}
+                >
+                  <span className={styles.socialIcon}>
+                    <Icon size={20} />
+                  </span>
+                  <span className={styles.socialLabel}>
+                    {social.platform.charAt(0).toUpperCase() + social.platform.slice(1)}
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}

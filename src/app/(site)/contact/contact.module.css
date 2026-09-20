@@ -1,0 +1,17 @@
+.eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--dark-garnet);
+  margin-bottom: var(--space-3xs);
+}
+
+.infoBlock {
+  margin-top: var(--space-2xl);
+}
+
+.formBlock {
+  margin-top: var(--space-2xl);
+  max-width: 640px;
+}
