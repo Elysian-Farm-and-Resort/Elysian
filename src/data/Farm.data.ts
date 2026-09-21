@@ -6,7 +6,7 @@ export const farmHero = {
   headline: "Grown With Purpose.",
   subtext: "A modern agricultural experience at the heart of Elysian Farms & Resort.",
   location: "Ibadan, Nigeria",
-  imageUrl: "/images/farm/hero.jpg",
+  imageUrl: "/about/about-hero.webp",
   imageAlt: "Farmland and greenhouses at golden hour",
 };
 

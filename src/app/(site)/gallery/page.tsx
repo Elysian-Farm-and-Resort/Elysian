@@ -1,47 +1,59 @@
-import type { Metadata } from 'next';
-import GalleryCard from "@/components/home/GalleryCard";
+import type { Metadata } from "next";
+import PageHero from "@/components/PageHero";
+import GalleryBrowser, { type CategoryWithCover } from "@/components/gallery/GalleryBrowser";
+import GalleryFeatured from "@/components/gallery/GalleryFeatured";
+import StayConnectedSection from "@/components/gallery/StayConnectedSection";
+import { galleryHero, galleryStayConnected } from "@/data/GalleryPage.data";
 import { getGalleryCategories, getGalleryImages } from "../../../../sanity/queries";
-import styles from './page.module.css';
+import { getSiteSettings } from "../../../../sanity/queries";
 
 export const metadata: Metadata = {
-  title: 'Gallery',
+  title: "Gallery",
   description:
-    'Browse photos of the farm, resort, Aduke Cottages, and events at Elysian Farms & Resort.',
+    "Browse photos of the farm, resort, Aduke Cottages, and events at Elysian Farms & Resort.",
 };
 
 export default async function GalleryPage() {
-  const [categories, allImages] = await Promise.all([
-    getGalleryCategories(),
-    getGalleryImages(),
-  ]);
+  let categories: CategoryWithCover[] = [];
+  let settings = null;
+
+  try {
+    const [rawCategories, allImages, siteSettings] = await Promise.all([
+      getGalleryCategories(),
+      getGalleryImages(),
+      getSiteSettings(),
+    ]);
+    settings = siteSettings;
+
+    categories = rawCategories.map((category) => {
+      const imagesInCategory = allImages.filter((img) => img.categorySlug === category.slug);
+      const cover = imagesInCategory.find((img) => img.featured) || imagesInCategory[0];
+      return {
+        ...category,
+        coverUrl: cover?.image.asset.url,
+        coverAlt: cover?.image.alt,
+        imageCount: imagesInCategory.length,
+      };
+    });
+  } catch (error) {
+    console.error("Failed to fetch gallery data:", error);
+  }
 
   return (
-    <div className="section">
-      <div className="container">
-        <h1>Gallery</h1>
-        <p className="text-lead">
-          A look at the farm, the resort, the cottages, and the moments in between.
-        </p>
+    <>
+      <PageHero
+        eyebrow={galleryHero.eyebrow}
+        headline={galleryHero.headline}
+        subtext={galleryHero.subtext}
+        imageUrl={galleryHero.imageUrl}
+        imageAlt={galleryHero.imageAlt}
+      />
 
-        <div className={styles.cardGrid}>
-          {categories.map((category) => {
-            const imagesInCategory = allImages.filter(
-              (img) => img.categorySlug === category.slug
-            );
-            const cover = imagesInCategory.find((img) => img.featured) || imagesInCategory[0];
+      <GalleryBrowser categories={categories} />
 
-            return (
-              <GalleryCard
-                key={category._id}
-                category={category}
-                coverImageUrl={cover?.image.asset.url}
-                coverImageAlt={cover?.image.alt}
-                imageCount={imagesInCategory.length}
-              />
-            );
-          })}
-        </div>
-      </div>
-    </div>
+      <GalleryFeatured categories={categories} />
+
+      <StayConnectedSection settings={settings} content={galleryStayConnected} />
+    </>
   );
 }

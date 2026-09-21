@@ -3,7 +3,7 @@ export const contactHero = {
   headline: "Let's Talk About Elysian.",
   subtext:
     "Have a question? Interested in ownership, visiting, partnerships or the development? We'd love to hear from you.",
-  imageUrl: "/images/contact/hero.jpg",
+  imageUrl: "/about/about-hero.webp",
   imageAlt: "Sunset view over Elysian Farms & Resort",
 };
 

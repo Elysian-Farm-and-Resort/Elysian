@@ -24,9 +24,12 @@ export default defineType({
       type: 'string',
       options: {
         list: [
+          { title: 'Development', value: 'development' },
           { title: 'Farm', value: 'farm' },
-          { title: 'Resort Progress', value: 'resort' },
-          { title: 'Press', value: 'press' },
+          { title: 'Resort', value: 'resort' },
+          { title: 'Community', value: 'community' },
+          { title: 'Events', value: 'events' },
+          { title: 'News', value: 'news' },
         ],
       },
     }),

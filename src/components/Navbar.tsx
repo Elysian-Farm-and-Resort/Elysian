@@ -13,7 +13,7 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const isHeroPage = pathname === "/" || pathname === "/about" || pathname === "/farm" || pathname === "/contact" || pathname === "/gallery";
+  const isHeroPage = pathname === "/" || pathname === "/about" || pathname === "/farm" || pathname === "/contact" || pathname === "/journey" || pathname.startsWith("/journey/") || pathname === "/gallery" || pathname.startsWith("/gallery/");
 
   useEffect(() => {
     // Hero pages begin with a transparent header and regain their background
@@ -27,6 +27,11 @@ export default function Navbar() {
   }, [isHeroPage]);
 
   const isTransparent = isHeroPage && !isScrolled;
+
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   const toggleDropdown = (label: string) => {
     setOpenDropdown((current) => (current === label ? null : label));
@@ -60,9 +65,10 @@ export default function Navbar() {
                   <>
                     <button
                       type="button"
-                      className={styles.navLink}
+                      className={`${styles.navLink} ${isActive(item.href) ? styles.active : ""}`}
                       aria-expanded={openDropdown === item.label}
                       aria-haspopup="true"
+                      aria-current={isActive(item.href) ? "page" : undefined}
                       onClick={() => toggleDropdown(item.label)}
                     >
                       {item.label}
@@ -76,7 +82,11 @@ export default function Navbar() {
                     >
                       {item.children.map((child) => (
                         <li key={child.href}>
-                          <Link href={child.href} className={styles.dropdownLink}>
+                          <Link
+                            href={child.href}
+                            className={`${styles.dropdownLink} ${isActive(child.href) ? styles.active : ""}`}
+                            aria-current={isActive(child.href) ? "page" : undefined}
+                          >
                             {child.label}
                           </Link>
                         </li>
@@ -84,7 +94,11 @@ export default function Navbar() {
                     </ul>
                   </>
                 ) : (
-                  <Link href={item.href} className={styles.navLink}>
+                  <Link
+                    href={item.href}
+                    className={`${styles.navLink} ${isActive(item.href) ? styles.active : ""}`}
+                    aria-current={isActive(item.href) ? "page" : undefined}
+                  >
                     {item.label}
                   </Link>
                 )}
@@ -117,7 +131,12 @@ export default function Navbar() {
       >
         <ul>
           {navItems.map((item) => (
-            <MobileNavItem key={item.href} item={item} onNavigate={() => setMobileOpen(false)} />
+            <MobileNavItem
+              key={item.href}
+              item={item}
+              isActive={isActive}
+              onNavigate={() => setMobileOpen(false)}
+            />
           ))}
           <li>
             <Link
@@ -136,9 +155,11 @@ export default function Navbar() {
 
 function MobileNavItem({
   item,
+  isActive,
   onNavigate,
 }: {
   item: NavItem;
+  isActive: (href: string) => boolean;
   onNavigate: () => void;
 }) {
   const [expanded, setExpanded] = useState(false);
@@ -146,7 +167,12 @@ function MobileNavItem({
   if (!item.children) {
     return (
       <li>
-        <Link href={item.href} className={styles.mobileLink} onClick={onNavigate}>
+        <Link
+          href={item.href}
+          className={`${styles.mobileLink} ${isActive(item.href) ? styles.active : ""}`}
+          aria-current={isActive(item.href) ? "page" : undefined}
+          onClick={onNavigate}
+        >
           {item.label}
         </Link>
       </li>
@@ -157,7 +183,7 @@ function MobileNavItem({
     <li>
       <button
         type="button"
-        className={styles.mobileLink}
+        className={`${styles.mobileLink} ${isActive(item.href) ? styles.active : ""}`}
         aria-expanded={expanded}
         onClick={() => setExpanded((open) => !open)}
       >
@@ -169,7 +195,12 @@ function MobileNavItem({
       <ul className={styles.mobileSubList} data-open={expanded}>
         {item.children.map((child) => (
           <li key={child.href}>
-            <Link href={child.href} className={styles.mobileSubLink} onClick={onNavigate}>
+            <Link
+              href={child.href}
+              className={`${styles.mobileSubLink} ${isActive(child.href) ? styles.active : ""}`}
+              aria-current={isActive(child.href) ? "page" : undefined}
+              onClick={onNavigate}
+            >
               {child.label}
             </Link>
           </li>

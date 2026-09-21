@@ -1,11 +1,11 @@
-import { client } from './client';
+import { client } from "./client";
 
 // ---------------------------------------------------------------------------
 // Site Settings
 // ---------------------------------------------------------------------------
 
 export type SocialLink = {
-  platform: 'instagram' | 'facebook' | 'tiktok' | 'youtube' | 'linkedin';
+  platform: "instagram" | "facebook" | "tiktok" | "youtube" | "linkedin";
   url: string;
 };
 
@@ -71,7 +71,7 @@ export type GalleryImage = {
 };
 
 export async function getGalleryImages(categorySlug?: string): Promise<GalleryImage[]> {
-  const filter = categorySlug ? ` && category->slug.current == $categorySlug` : '';
+  const filter = categorySlug ? ` && category->slug.current == $categorySlug` : "";
   return client.fetch(
     `
     *[_type == "galleryImage"${filter}] | order(order asc, _createdAt desc) {
@@ -99,6 +99,31 @@ export type JournalPostSummary = {
   excerpt?: string;
   coverImage?: { asset: { url: string }; alt: string };
 };
+
+export type JournalPost = {
+  title: string;
+  slug: string;
+  category: string;
+  publishedAt: string;
+  excerpt?: string;
+  coverImage?: { asset: { url: string }; alt: string };
+  body?: unknown[];
+};
+
+export async function getJournalPostBySlug(slug: string): Promise<JournalPost | null> {
+  return client.fetch(
+    `*[_type == "journalPost" && slug.current == $slug][0]{
+      title,
+      "slug": slug.current,
+      category,
+      publishedAt,
+      excerpt,
+      coverImage { asset->{url}, alt },
+      body
+    }`,
+    { slug }
+  );
+}
 
 export async function getJournalPosts(): Promise<JournalPostSummary[]> {
   return client.fetch(`

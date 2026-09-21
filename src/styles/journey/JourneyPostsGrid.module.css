@@ -1,0 +1,43 @@
+.eyebrow {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--dark-garnet);
+  margin-bottom: var(--space-md);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-xl);
+}
+
+.tab {
+  padding: var(--space-3xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--surface-border);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+
+.tab:hover {
+  border-color: var(--golden-orange);
+}
+
+.tab[data-active="true"] {
+  background-color: var(--evergreen);
+  border-color: var(--evergreen);
+  color: var(--text-inverse);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(240px, 1fr));
+  gap: var(--space-md);
+}

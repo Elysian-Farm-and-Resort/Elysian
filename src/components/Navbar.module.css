@@ -70,6 +70,22 @@
   color: var(--golden-orange);
 }
 
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 2px; left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 2px;
+  background: var(--gold-400);
+  border-radius: var(--radius-full);
+  transition: width 0.3s var(--ease);
+}
+
+.active {
+  color: var(--golden-orange);
+
+}
+
 .chevron {
   font-size: 0.65em;
   transform: translateY(1px);
@@ -116,6 +132,10 @@
 .dropdownLink:hover {
   background-color: var(--surface-border-dark);
   color: var(--text-inverse);
+}
+
+.dropdownLink.active {
+  color: var(--golden-orange);
 }
 
 /* ---- CTA ---- */
@@ -248,4 +268,8 @@
   padding-block: var(--space-2xs);
   font-size: var(--text-sm);
   color: var(--text-on-dark-muted);
+}
+
+.mobileSubLink.active {
+  color: var(--golden-orange);
 }
