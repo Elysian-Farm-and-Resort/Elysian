@@ -55,11 +55,12 @@ export const socialLinks: SocialLink[] = [
 ];
 
 export const contactInfo = {
-  address: 'Elysian Farms & Resort, [Site Address], Nigeria',
+  address: 'Ayobola Daodu, Lekki Scheme II, Ajah, Lagos State, Nigeria',
+  devAddress: "Ido-Eruwa Expressway, Ibadan, Oyo State, Nigeria",
   phone: '+234 000 000 0000',
   phoneHref: 'tel:+2340000000000',
-  email: 'hello@elysianfarmsandresort.com',
-  emailHref: 'mailto:hello@elysianfarmsandresort.com',
+  email: 'elysian.enquiry@agrolocale.com',
+  emailHref: 'mailto:elysian.enquiry@agrolocale.com',
 };
 
 // Recreates the closing-slide statement from the brand deck ("Own the Escape.")
@@ -74,6 +75,9 @@ export const footerCta = {
   waitlistLabel: 'Or join the waitlist for updates',
   waitlistPlaceholder: 'you@email.com',
   waitlistButtonLabel: 'Notify Me',
+  newsletterLabel: 'Subscribe to our newsletter',
+  newsletterPlaceholder: 'you@email.com',
+  newsletterButtonLabel: 'Subscribe',
 };
 
 export const parentCompany = {

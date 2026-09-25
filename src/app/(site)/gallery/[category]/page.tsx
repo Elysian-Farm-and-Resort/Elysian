@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import PageHero from "@/components/PageHero";
 import GalleryGrid from "@/components/gallery/GalleryGrid";
 import {
   getGalleryCategories,
@@ -37,14 +38,22 @@ export default async function GalleryCategoryPage({ params }: Props) {
   const images = await getGalleryImages(category);
 
   return (
-    <div className="section">
-      <div className="container">
-        <h1>{meta.title}</h1>
-        {meta.description && <p className="text-lead">{meta.description}</p>}
-        <div className={styles.gridWrap}>
-          <GalleryGrid images={images} />
+    <>
+      <PageHero
+        eyebrow="Gallery"
+        headline={meta.title}
+        subtext={meta.description || `Explore moments from ${meta.title}.`}
+        imageUrl={meta.coverUrl || "/about/about-hero.webp"}
+        imageAlt={meta.coverAlt || meta.title}
+      />
+
+      <section className="section">
+        <div className="container">
+          <div className={styles.gridWrap}>
+            <GalleryGrid images={images} />
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

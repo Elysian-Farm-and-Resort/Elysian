@@ -1,17 +1,11 @@
 import { Phone, Mail, MapPin } from "lucide-react";
-import type { SiteSettings } from "../../../sanity/queries";
-import { helpSectionContent, contactNotes, contactFallback } from "@/data/Contact.data";
+import { helpSectionContent, contactNotes } from "@/data/Contact.data";
+import { contactInfo } from "@/data/Footer.data";
 import ContactForm from "./ContactForm";
 import styles from "@/styles/contact/ContactHelpSection.module.css";
 
-type ContactHelpSectionProps = {
-  settings: SiteSettings | null;
-};
-
-export default function ContactHelpSection({ settings }: ContactHelpSectionProps) {
-  const phone = settings?.contactPhone || contactFallback.phone;
-  const email = settings?.contactEmail || contactFallback.email;
-  const address = settings?.contactAddress || contactFallback.address;
+export default function ContactHelpSection() {
+  const { phone, email, devAddress } = contactInfo;
 
   return (
     <section className="section">
@@ -54,7 +48,7 @@ export default function ContactHelpSection({ settings }: ContactHelpSectionProps
               </span>
               <div>
                 <p className={styles.infoLabel}>Location</p>
-                <p className={styles.infoValue}>{address}</p>
+                <p className={styles.infoValue}>{devAddress}</p>
                 <p className={styles.infoNote}>{contactNotes.locationNote}</p>
               </div>
             </div>

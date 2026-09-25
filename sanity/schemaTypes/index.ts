@@ -1,7 +1,6 @@
 import siteSettings from "./siteSettings";
 import journalPost from "./journalPost";
 import galleryImage from "./galleryimage";
-import galleryCategory from "./gallerycategories";
 
 // Additional singletons (homePage, farmPage, resortPage, ownPage, storyPage,
 // contactPage) get added here as we build each corresponding page — no need
@@ -10,5 +9,4 @@ export const schemaTypes = [
   siteSettings,
   journalPost,
   galleryImage,
-  galleryCategory,
 ];

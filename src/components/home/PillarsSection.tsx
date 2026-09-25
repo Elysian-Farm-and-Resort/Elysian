@@ -11,7 +11,7 @@ export default function PillarsSection() {
   const [own, ...rest] = pillars;
 
   return (
-    <section className="section">
+    <section className={`section ${styles.section}`}>
       <div className="container">
         <motion.p
           className={styles.sectionEyebrow}

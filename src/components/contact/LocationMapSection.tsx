@@ -1,14 +1,10 @@
 import { MapPin } from "lucide-react";
-import type { SiteSettings } from "../../../sanity/queries";
-import { locationSectionContent, mapQuery, contactFallback } from "@/data/Contact.data";
+import { locationSectionContent, mapQuery } from "@/data/Contact.data";
+import { contactInfo } from "@/data/Footer.data";
 import styles from "@/styles/contact/LocationMapSection.module.css";
 
-type LocationMapSectionProps = {
-  settings: SiteSettings | null;
-};
-
-export default function LocationMapSection({ settings }: LocationMapSectionProps) {
-  const address = settings?.contactAddress || contactFallback.address;
+export default function LocationMapSection() {
+  const address = contactInfo.devAddress;
   const query = encodeURIComponent(address || mapQuery);
   const mapSrc = `https://www.google.com/maps?q=${query}&output=embed`;
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${query}`;

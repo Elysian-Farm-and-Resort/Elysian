@@ -1,3 +1,7 @@
+.section {
+  background-color: var(--parchment-warm);
+}
+
 .sectionEyebrow {
   font-size: var(--text-sm);
   font-weight: 600;
@@ -92,7 +96,11 @@
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 30%, hsla(180, 100%, 5%, 0.85) 100%);
+  background: linear-gradient(
+    180deg,
+    transparent 30%,
+    hsla(180, 100%, 5%, 0.85) 100%
+  );
 }
 
 .content {

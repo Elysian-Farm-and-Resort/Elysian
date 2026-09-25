@@ -72,6 +72,23 @@
   color: var(--text-secondary);
 }
 
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2xs);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.2rem;
+  accent-color: var(--golden-orange);
+  flex-shrink: 0;
+}
+
 .errorText {
   font-size: var(--text-sm);
   color: var(--dark-garnet);
@@ -104,4 +121,30 @@
 .successBody {
   font-size: var(--text-sm);
   color: var(--text-secondary);
+}
+
+.successButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--space-md);
+  padding: var(--space-xs) var(--space-md);
+  border-radius: var(--radius-pill);
+  background-color: var(--golden-orange);
+  color: var(--ink-black);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transition:
+    background-color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.successButton:hover {
+  background-color: var(--golden-orange-light);
+  transform: translateY(-2px);
+}
+
+.successButton:focus-visible {
+  outline: 2px solid var(--dark-garnet);
+  outline-offset: 3px;
 }

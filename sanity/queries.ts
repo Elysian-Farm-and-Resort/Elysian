@@ -36,54 +36,107 @@ export type GalleryCategory = {
   title: string;
   slug: string;
   description?: string;
+  coverUrl?: string;
+  coverAlt?: string;
+  imageCount: number;
 };
 
-export async function getGalleryCategories(): Promise<GalleryCategory[]> {
-  return client.fetch(`
-    *[_type == "galleryCategory"] | order(order asc, title asc) {
-      _id,
-      title,
-      "slug": slug.current,
-      description
-    }
-  `);
-}
-
-export async function getGalleryCategoryBySlug(slug: string): Promise<GalleryCategory | null> {
-  return client.fetch(
-    `*[_type == "galleryCategory" && slug.current == $slug][0]{
-      _id,
-      title,
-      "slug": slug.current,
-      description
-    }`,
-    { slug }
-  );
-}
-
-export type GalleryImage = {
-  _id: string;
-  image: { asset: { url: string }; alt: string };
+export type GalleryEventImage = {
+  asset: { url: string };
+  alt?: string;
   caption?: string;
+};
+
+export type GalleryEvent = {
+  _id: string;
+  title: string;
+  slug: string;
+  eventDate?: string;
+  category: string;
   categorySlug: string;
-  categoryTitle: string;
+  location?: string;
+  coverImage: { asset: { url: string }; alt?: string };
+  description?: string;
+  story?: unknown[];
+  images: GalleryEventImage[];
+  highlightStats?: { label?: string; value?: string }[];
   featured: boolean;
 };
 
-export async function getGalleryImages(categorySlug?: string): Promise<GalleryImage[]> {
-  const filter = categorySlug ? ` && category->slug.current == $categorySlug` : "";
+const galleryCategoryTitles = [
+  "Harvest Events",
+  "Farmer's Market",
+  "Farm Estate Tours",
+  "Community Experience",
+  "Produce Showcase",
+  "Lifestyle & Resort",
+];
+
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+}
+
+function categoryTitleFromSlug(slug: string) {
+  return galleryCategoryTitles.find((title) => slugify(title) === slug);
+}
+
+export async function getGalleryCategories(): Promise<GalleryCategory[]> {
+  const events = await getGalleryImages();
+  return galleryCategoryTitles
+    .map((title) => {
+      const categoryEvents = events.filter((event) => event.category === title);
+      const firstEvent = categoryEvents[0];
+      return {
+        _id: `category-${slugify(title)}`,
+        title,
+        slug: slugify(title),
+        description: firstEvent?.description,
+        coverUrl: firstEvent?.coverImage.asset.url,
+        coverAlt: firstEvent?.coverImage.alt,
+        imageCount: categoryEvents.reduce(
+          (count, event) => count + event.images.length,
+          0,
+        ),
+      };
+    })
+    .filter((category) => category.imageCount > 0);
+}
+
+export async function getGalleryCategoryBySlug(
+  slug: string,
+): Promise<GalleryCategory | null> {
+  const categories = await getGalleryCategories();
+  return categories.find((category) => category.slug === slug) || null;
+}
+
+export async function getGalleryImages(
+  categorySlug?: string,
+): Promise<GalleryEvent[]> {
+  const categoryTitle = categorySlug
+    ? categoryTitleFromSlug(categorySlug)
+    : undefined;
+  const filter = categoryTitle ? ` && category == $categoryTitle` : "";
   return client.fetch(
     `
-    *[_type == "galleryImage"${filter}] | order(order asc, _createdAt desc) {
+    *[_type == "galleryEvent"${filter}] | order(eventDate desc, _createdAt desc) {
       _id,
-      image { asset->{url}, alt },
-      caption,
-      "categorySlug": category->slug.current,
-      "categoryTitle": category->title,
+      title,
+      "slug": slug.current,
+      eventDate,
+      category,
+      location,
+      coverImage { asset->{url}, alt },
+      description,
+      story,
+      images[] { asset->{url}, alt, caption },
+      highlightStats,
       featured
     }
   `,
-    { categorySlug }
+    { categoryTitle },
   );
 }
 
@@ -110,7 +163,9 @@ export type JournalPost = {
   body?: unknown[];
 };
 
-export async function getJournalPostBySlug(slug: string): Promise<JournalPost | null> {
+export async function getJournalPostBySlug(
+  slug: string,
+): Promise<JournalPost | null> {
   return client.fetch(
     `*[_type == "journalPost" && slug.current == $slug][0]{
       title,
@@ -121,7 +176,7 @@ export async function getJournalPostBySlug(slug: string): Promise<JournalPost | 
       coverImage { asset->{url}, alt },
       body
     }`,
-    { slug }
+    { slug },
   );
 }
 

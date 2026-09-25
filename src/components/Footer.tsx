@@ -9,7 +9,8 @@ import {
   type SocialLink,
 } from '../data/Footer.data';
 import HorizonDivider from './HorizonDivider';
-import WaitlistForm from './WaitlistForm';
+// import WaitlistForm from './WaitlistForm';
+import NewsletterForm from './NewsletterForm';
 import styles from './Footer.module.css';
 import { JSX } from 'react/jsx-runtime';
 
@@ -57,10 +58,10 @@ export default function Footer() {
             <p className={styles.ctaSubtext}>{footerCta.subtext}</p>
           </div>
           <div className={styles.ctaActions}>
-            <Link href={footerCta.ctaHref} className="btn btn-primary">
+            {/* <Link href={footerCta.ctaHref} className="btn btn-primary">
               {footerCta.ctaLabel}
-            </Link>
-            <WaitlistForm />
+            </Link> */}
+            <NewsletterForm />
           </div>
         </div>
       </div>
@@ -132,6 +133,9 @@ export default function Footer() {
               <a href={contactInfo.emailHref}>{contactInfo.email}</a>
             </p>
           </address>
+          {/* <div className={styles.newsletter}>
+            <NewsletterForm /> 
+          </div>  */}
         </div>
       </div>
 

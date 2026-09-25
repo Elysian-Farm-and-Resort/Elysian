@@ -4,8 +4,7 @@ import GalleryBrowser, { type CategoryWithCover } from "@/components/gallery/Gal
 import GalleryFeatured from "@/components/gallery/GalleryFeatured";
 import StayConnectedSection from "@/components/gallery/StayConnectedSection";
 import { galleryHero, galleryStayConnected } from "@/data/GalleryPage.data";
-import { getGalleryCategories, getGalleryImages } from "../../../../sanity/queries";
-import { getSiteSettings } from "../../../../sanity/queries";
+import { getGalleryCategories } from "../../../../sanity/queries";
 
 export const metadata: Metadata = {
   title: "Gallery",
@@ -15,26 +14,10 @@ export const metadata: Metadata = {
 
 export default async function GalleryPage() {
   let categories: CategoryWithCover[] = [];
-  let settings = null;
 
   try {
-    const [rawCategories, allImages, siteSettings] = await Promise.all([
-      getGalleryCategories(),
-      getGalleryImages(),
-      getSiteSettings(),
-    ]);
-    settings = siteSettings;
-
-    categories = rawCategories.map((category) => {
-      const imagesInCategory = allImages.filter((img) => img.categorySlug === category.slug);
-      const cover = imagesInCategory.find((img) => img.featured) || imagesInCategory[0];
-      return {
-        ...category,
-        coverUrl: cover?.image.asset.url,
-        coverAlt: cover?.image.alt,
-        imageCount: imagesInCategory.length,
-      };
-    });
+    const rawCategories = await getGalleryCategories();
+    categories = rawCategories;
   } catch (error) {
     console.error("Failed to fetch gallery data:", error);
   }
@@ -53,7 +36,7 @@ export default async function GalleryPage() {
 
       <GalleryFeatured categories={categories} />
 
-      <StayConnectedSection settings={settings} content={galleryStayConnected} />
+      <StayConnectedSection content={galleryStayConnected} />
     </>
   );
 }

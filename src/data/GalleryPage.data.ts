@@ -19,4 +19,6 @@ export const galleryStayConnected = {
   eyebrow: "Stay Connected",
   heading: "Be Part of the Journey",
   subtext: "Follow us for the latest updates, new photos and more.",
+  imageUrl: "/images/contact/stay-connected.jpg",
+  imageAlt: "Aerial view of the Elysian farmland",
 };

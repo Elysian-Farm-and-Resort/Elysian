@@ -4,9 +4,11 @@ import { useEffect, useState, type FormEvent } from 'react';
 import styles from './Footer.module.css';
 import { footerCta } from '../data/Footer.data';
 
-export default function WaitlistForm() {
+type Status = 'idle' | 'submitting' | 'submitted' | 'error';
+
+export default function NewsletterForm() {
   const [email, setEmail] = useState('');
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted' | 'error'>('idle');
+  const [status, setStatus] = useState<Status>('idle');
 
   useEffect(() => {
     if (status !== 'submitted') return;
@@ -24,7 +26,7 @@ export default function WaitlistForm() {
     setStatus('submitting');
 
     try {
-      const response = await fetch('/api/waitlist', {
+      const response = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -38,35 +40,35 @@ export default function WaitlistForm() {
   };
 
   if (status === 'submitted') {
-    return <p className={styles.waitlistConfirm}>You&apos;re on the list — thank you.</p>;
+    return <p className={styles.newsletterConfirm}>You&apos;re subscribed — thank you.</p>;
   }
 
   return (
-    <form className={styles.waitlistForm} onSubmit={handleSubmit}>
-      <label htmlFor="footer-waitlist-email" className={styles.waitlistLabel}>
-        {footerCta.waitlistLabel}
+    <form className={styles.newsletterForm} onSubmit={handleSubmit}>
+      <label htmlFor="footer-newsletter-email" className={styles.newsletterLabel}>
+        {footerCta.newsletterLabel}
       </label>
-      <div className={styles.waitlistRow}>
+      <div className={styles.newsletterRow}>
         <input
-          id="footer-waitlist-email"
+          id="footer-newsletter-email"
           type="email"
           required
           value={email}
           onChange={(event) => setEmail(event.target.value)}
-          placeholder={footerCta.waitlistPlaceholder}
-          className={styles.waitlistInput}
+          placeholder={footerCta.newsletterPlaceholder}
+          className={styles.newsletterInput}
         />
         <button
           type="submit"
-          className={styles.waitlistButton}
+          className={styles.newsletterButton}
           disabled={status === 'submitting'}
         >
-          {status === 'submitting' ? 'Joining...' : footerCta.waitlistButtonLabel}
+          {status === 'submitting' ? 'Subscribing...' : footerCta.newsletterButtonLabel}
         </button>
       </div>
       {status === 'error' && (
-        <p className={styles.waitlistError} role="alert">
-          We couldn&apos;t add you right now. Please try again.
+        <p className={styles.newsletterError} role="alert">
+          We couldn&apos;t subscribe you right now. Please try again.
         </p>
       )}
     </form>

@@ -1,61 +1,142 @@
-import { defineField, defineType } from 'sanity';
+import { defineField, defineType } from 'sanity'
 
 export default defineType({
-  name: 'galleryImage',
-  title: 'Gallery Image',
+  name: 'galleryEvent',
+  title: 'Gallery Event',
   type: 'document',
   fields: [
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: { hotspot: true },
+      name: 'title',
+      title: 'Event Title',
+      type: 'string',
       validation: (Rule) => Rule.required(),
-      fields: [
-        defineField({
-          name: 'alt',
-          title: 'Alt Text',
-          type: 'string',
-          description: 'Describe what\'s in the photo — required for accessibility and image SEO.',
-          validation: (Rule) => Rule.required(),
-        }),
-      ],
     }),
     defineField({
-      name: 'caption',
-      title: 'Caption',
-      type: 'string',
-      description: 'Optional short caption shown under the image on the Gallery page.',
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: {
+        source: 'title',
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'eventDate',
+      title: 'Event Date',
+      type: 'date',
+      options: {
+        dateFormat: 'DD-MM-YYYY',
+      },
     }),
     defineField({
       name: 'category',
       title: 'Category',
-      type: 'reference',
-      to: [{ type: 'galleryCategory' }],
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Harvest Events', value: 'Harvest Events' },
+          { title: "Farmer's Market", value: "Farmer's Market" },
+          { title: 'Farm Estate Tours', value: 'Farm Estate Tours' },
+          { title: 'Community Experience', value: 'Community Experience' },
+          { title: 'Produce Showcase', value: 'Produce Showcase' },
+          { title: 'Lifestyle & Resort', value: 'Lifestyle & Resort' },
+        ],
+      },
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'featured',
-      title: 'Featured',
-      type: 'boolean',
-      description: 'Featured images can be pulled out for use on the Home page or category headers.',
-      initialValue: false,
+      name: 'location',
+      title: 'Location',
+      type: 'string',
     }),
     defineField({
-      name: 'order',
-      title: 'Display Order',
-      type: 'number',
-      description: 'Lower numbers show first. Leave blank to sort by upload date instead.',
+      name: 'coverImage',
+      title: 'Cover Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Alternative Text',
+          type: 'string',
+        },
+      ],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'description',
+      title: 'Short Description',
+      type: 'text',
+      rows: 4,
+      description: 'A short summary for the gallery card and section intro.',
+    }),
+    defineField({
+      name: 'story',
+      title: 'Event Story',
+      type: 'array',
+      description: 'Optional richer narrative for the event detail page.',
+      of: [{ type: 'block' }],
+    }),
+    defineField({
+      name: 'images',
+      title: 'Gallery Images',
+      type: 'array',
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Alternative Text',
+              type: 'string',
+            },
+            {
+              name: 'caption',
+              title: 'Caption',
+              type: 'string',
+            },
+          ],
+        },
+      ],
+      validation: (Rule) => Rule.min(1),
+    }),
+    defineField({
+      name: 'highlightStats',
+      title: 'Highlight Stats',
+      type: 'array',
+      description: 'Optional short stats such as attendance, produce sold, or acres harvested.',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            { name: 'label', title: 'Label', type: 'string' },
+            { name: 'value', title: 'Value', type: 'string' },
+          ],
+          preview: {
+            select: {
+              title: 'value',
+              subtitle: 'label',
+            },
+          },
+        },
+      ],
+    }),
+    defineField({
+      name: 'featured',
+      title: 'Feature this Event',
+      type: 'boolean',
+      initialValue: false,
     }),
   ],
   preview: {
-    select: { title: 'caption', subtitle: 'category.title', media: 'image' },
-    prepare({ title, subtitle, media }) {
-      return {
-        title: title || 'Untitled image',
-        subtitle,
-        media,
-      };
+    select: {
+      title: 'title',
+      subtitle: 'category',
+      media: 'coverImage',
     },
   },
-});
+})

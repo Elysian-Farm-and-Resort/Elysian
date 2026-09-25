@@ -6,7 +6,6 @@ import LocationMapSection from "@/components/contact/LocationMapSection";
 import StayConnectedSection from "@/components/contact/StayConnectedSection";
 import FinalCtaSection from "@/components/FinalCtaSection";
 import { contactHero, contactFinalCta } from "@/data/Contact.data";
-import { getSiteSettings } from "../../../../sanity/queries";
 
 export const metadata: Metadata = {
   title: "Get in Touch with us",
@@ -14,16 +13,7 @@ export const metadata: Metadata = {
     "Get in touch with Elysian Farms & Resort — ownership questions, farm experiences, corporate events, investment, or partnerships.",
 };
 
-export default async function ContactPage() {
-  // Wrapped so a Sanity/network hiccup never breaks this page — every
-  // section below falls back to placeholder content in Contact.data.ts.
-  let settings = null;
-  try {
-    settings = await getSiteSettings();
-  } catch (error) {
-    console.error("Failed to fetch site settings for Contact page:", error);
-  }
-
+export default function ContactPage() {
   return (
     <>
       <PageHero
@@ -34,13 +24,13 @@ export default async function ContactPage() {
         imageAlt={contactHero.imageAlt}
       />
 
-      <ContactHelpSection settings={settings} />
+      <ContactHelpSection />
 
       <ExploreMoreSection />
 
-      <LocationMapSection settings={settings} />
+      <LocationMapSection />
 
-      <StayConnectedSection settings={settings} />
+      <StayConnectedSection />
 
       <FinalCtaSection
         eyebrow={contactFinalCta.eyebrow}

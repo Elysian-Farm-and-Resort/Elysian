@@ -1,0 +1,80 @@
+.carousel {
+  position: relative;
+  margin-top: var(--space-lg);
+  padding-inline: var(--space-lg);
+}
+
+.track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(280px, calc((100% - 2 * var(--space-md)) / 3));
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-inline: contain;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.control {
+  position: absolute;
+  top: 50%;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--surface-border);
+  border-radius: 50%;
+  background-color: var(--surface-card);
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-50%);
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+
+.control:hover {
+  background-color: var(--surface-dark);
+  color: var(--text-inverse);
+}
+
+.previous {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+@media (min-width: 960px) {
+  .control {
+    display: none;
+  }
+}
+
+@media (max-width: 959px) {
+  .track {
+    grid-auto-columns: minmax(260px, calc((100% - var(--space-md)) / 2));
+  }
+}
+
+@media (max-width: 639px) {
+  .carousel {
+    padding-inline: var(--space-md);
+  }
+
+  .track {
+    grid-auto-columns: 100%;
+  }
+}

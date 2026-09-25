@@ -25,6 +25,7 @@ export default function ContactForm() {
       phone: formData.get("phone"),
       reason: formData.get("reason"),
       message: formData.get("message"),
+      subscribeToNewsletter: formData.get("subscribeToNewsletter") === "on",
     };
 
     try {
@@ -56,6 +57,17 @@ export default function ContactForm() {
           <p className={styles.successBody}>
             Thank you for reaching out — our team will get back to you shortly.
           </p>
+          <button
+            type="button"
+            className={styles.successButton}
+            onClick={() => {
+              setStatus("idle");
+              setErrorMessage("");
+              setMessageLength(0);
+            }}
+          >
+            Send Another Message
+          </button>
         </div>
       </div>
     );
@@ -149,6 +161,15 @@ export default function ContactForm() {
             {messageLength}/{messageMaxLength}
           </span>
         </div>
+
+        <label className={styles.checkboxLabel}>
+          <input
+            type="checkbox"
+            name="subscribeToNewsletter"
+            className={styles.checkbox}
+          />
+          <span>Subscribe me to the Elysian newsletter.</span>
+        </label>
 
         {status === "error" && <p className={styles.errorText}>{errorMessage}</p>}
 
