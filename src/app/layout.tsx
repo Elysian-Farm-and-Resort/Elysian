@@ -1,29 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Work_Sans } from "next/font/google";
+// import { Fraunces, Work_Sans } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-// ---------------------------------------------------------------------------
-// Fonts — loaded via next/font so they're self-hosted, preloaded, and never
-// block render (swaps out the CDN @import that was in the earlier globals.css
-// draft). Exposed as CSS variables so globals.css can keep referencing
-// var(--font-display) / var(--font-body) without change.
-// ---------------------------------------------------------------------------
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const workSans = Work_Sans({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-body",
-  display: "swap",
-});
 
 // ---------------------------------------------------------------------------
 // Site-wide metadata
@@ -128,11 +108,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en-NG" className={`${fraunces.variable} ${workSans.variable}`}>
+    <html lang="en-NG">
       <head>
         <script
           type="application/ld+json"
-          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
       </head>

@@ -4,8 +4,27 @@
    ========================================================================== */
 
 /* @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap'); */
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/Fraunces-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Work Sans";
+  src: url("/fonts/WorkSans-Variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
 
 :root {
+
+  --font-display: "Fraunces", serif;
+  --font-body: "Work Sans", sans-serif;
+  
   /* ---- Brand colors (from brand palette) ---- */
   --golden-orange: #e99c0c;
   --dark-garnet: #6f0500;
