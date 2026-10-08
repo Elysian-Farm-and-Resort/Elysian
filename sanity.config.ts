@@ -1,9 +1,5 @@
-// The Sanity package is provided by the project's dependency installation.
-// @ts-expect-error Sanity may be unavailable to TypeScript until dependencies are installed.
 import { defineConfig } from "sanity";
-// @ts-expect-error Sanity may be unavailable to TypeScript until dependencies are installed.
 import { structureTool } from "sanity/structure";
-// @ts-expect-error Sanity Vision may be unavailable to TypeScript until dependencies are installed.
 import { visionTool } from "@sanity/vision";
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schemaTypes } from "./sanity/schemaTypes";

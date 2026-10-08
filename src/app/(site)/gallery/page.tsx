@@ -3,7 +3,7 @@ import PageHero from "@/components/PageHero";
 import GalleryBrowser, { type CategoryWithCover } from "@/components/gallery/GalleryBrowser";
 import GalleryFeatured from "@/components/gallery/GalleryFeatured";
 import StayConnectedSection from "@/components/gallery/StayConnectedSection";
-import { galleryHero, galleryStayConnected } from "@/data/GalleryPage.data";
+import { galleryHero } from "@/data/GalleryPage.data";
 import { getGalleryCategories } from "../../../../sanity/queries";
 
 export const metadata: Metadata = {
@@ -36,7 +36,7 @@ export default async function GalleryPage() {
 
       <GalleryFeatured categories={categories} />
 
-      <StayConnectedSection content={galleryStayConnected} />
+      <StayConnectedSection  />
     </>
   );
 }
