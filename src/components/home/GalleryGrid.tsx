@@ -1,28 +1,34 @@
-import Image from 'next/image';
-import type { GalleryImage } from '../../../sanity/queries';
-import styles from '@/styles/home/GalleryGrid.module.css';
+import Image from "next/image";
+import type { GalleryEvent, GalleryEventImage } from "../../../sanity/queries";
+import styles from "./GalleryGrid.module.css";
 
 type GalleryGridProps = {
-  images: GalleryImage[];
+  // Accepts either the events returned by getGalleryImages() or an already
+  // flat list of event images — events are flattened into their photos.
+  images: ReadonlyArray<GalleryEvent | GalleryEventImage>;
 };
 
 export default function GalleryGrid({ images }: GalleryGridProps) {
-  if (images.length === 0) {
+  const photos: GalleryEventImage[] = images
+    .flatMap((item) => ("images" in item ? item.images || [] : [item]))
+    .filter((photo) => Boolean(photo?.asset?.url));
+
+  if (photos.length === 0) {
     return <p className={styles.empty}>No photos here yet — check back soon.</p>;
   }
 
   return (
     <div className={styles.grid}>
-      {images.map((item) => (
-        <figure key={item._id} className={styles.item}>
+      {photos.map((photo, index) => (
+        <figure key={`${photo.asset.url}-${index}`} className={styles.item}>
           <Image
-            src={item.image.asset.url}
-            alt={item.image.alt}
+            src={photo.asset.url}
+            alt={photo.alt || photo.caption || "Elysian gallery photo"}
             fill
-            sizes="(min-width: 960px) 33vw, 50vw"
+            sizes="(min-width: 960px) 25vw, (min-width: 640px) 33vw, 50vw"
             className={styles.image}
           />
-          {item.caption && <figcaption className={styles.caption}>{item.caption}</figcaption>}
+          {photo.caption && <figcaption className={styles.caption}>{photo.caption}</figcaption>}
         </figure>
       ))}
     </div>
