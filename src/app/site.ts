@@ -19,24 +19,28 @@ const staticRoutes: StaticRoute[] = [
 
   // Own / Aduke Cottages — the commercial core of the site
   { path: '/own', changeFrequency: 'weekly', priority: 0.9 },
-  { path: '/own/packages-pricing', changeFrequency: 'weekly', priority: 0.9 },
-  { path: '/own/ownership-and-trust', changeFrequency: 'monthly', priority: 0.8 },
-  { path: '/own/reserve', changeFrequency: 'monthly', priority: 0.8 },
+  // { path: '/own/packages-pricing', changeFrequency: 'weekly', priority: 0.9 },
+  // { path: '/own/ownership-and-trust', changeFrequency: 'monthly', priority: 0.8 },
+  // { path: '/own/reserve', changeFrequency: 'monthly', priority: 0.8 },
 
   // The Farm
   { path: '/farm', changeFrequency: 'monthly', priority: 0.6 },
 
   // The Resort Experience
   { path: '/resort', changeFrequency: 'monthly', priority: 0.7 },
-  { path: '/resort/pool-spa-recreation', changeFrequency: 'monthly', priority: 0.5 },
-  { path: '/resort/dining-and-animals', changeFrequency: 'monthly', priority: 0.5 },
-  { path: '/resort/events-and-retreats', changeFrequency: 'monthly', priority: 0.7 },
+  // { path: '/resort/pool-spa-recreation', changeFrequency: 'monthly', priority: 0.5 },
+  // { path: '/resort/dining-and-animals', changeFrequency: 'monthly', priority: 0.5 },
+  // { path: '/resort/events-and-retreats', changeFrequency: 'monthly', priority: 0.7 },
 
   // Journey / Journal index (individual posts are added dynamically below)
   { path: '/journey', changeFrequency: 'weekly', priority: 0.7 },
 
   { path: '/gallery', changeFrequency: 'monthly', priority: 0.5 },
   { path: '/contact', changeFrequency: 'yearly', priority: 0.5 },
+
+  // Legal / Privacy / Terms pages
+  { path: "/legal/privacy-policy", changeFrequency: "yearly", priority: 0.3 },
+  { path: "/legal/terms-of-service", changeFrequency: "yearly", priority: 0.3 },
 ];
 
 // Placeholder for CMS-driven routes (e.g. individual Journal/progress posts).
