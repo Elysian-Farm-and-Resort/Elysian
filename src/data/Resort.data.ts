@@ -3,7 +3,7 @@ export const resortHero = {
   headline: "Relax. Reconnect. Experience Elysian.",
   subtext:
     "A world-class resort designed for comfort, wellness and unforgettable moments — set within the natural beauty of Ibadan.",
-  imageUrl: "/images/resort/hero.jpg",
+  imageUrl: "/about/about-hero.webp",
   imageAlt: "Elysian Resort pool at dusk with palm trees",
 };
 

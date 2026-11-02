@@ -14,7 +14,7 @@ export const ownHero = {
   headline: "A Place of Your Own.",
   subtext:
     "Aduke Cottages and land plots in a managed countryside resort community in Ibadan, Nigeria.",
-  imageUrl: "/images/own/hero.jpg",
+  imageUrl: "/about/about-hero.webp",
   imageAlt: "Aduke Cottages set within the Elysian landscape",
 };
 
