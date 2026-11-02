@@ -10,11 +10,11 @@ export const navItems: NavItem[] = [
   {
     label: 'Own',
     href: '/own',
-    children: [
-      { label: 'Packages & Pricing', href: '/own/packages-pricing' },
-      { label: 'Ownership & Trust', href: '/own/ownership-and-trust' },
-      { label: 'Reserve a Tour', href: '/own/reserve' },
-    ],
+    // children: [
+    //   { label: 'Packages & Pricing', href: '/own/packages-pricing' },
+    //   { label: 'Ownership & Trust', href: '/own/ownership-and-trust' },
+    //   { label: 'Reserve a Tour', href: '/own/reserve' },
+    // ],
   },
   { 
     label: 'The Farm', 
@@ -23,11 +23,11 @@ export const navItems: NavItem[] = [
   {
     label: 'The Resort',
     href: '/resort',
-    children: [
-      { label: 'Pool, Spa & Recreation', href: '/resort/pool-spa-recreation' },
-      { label: 'Dining & Animals', href: '/resort/dining-and-animals' },
-      { label: 'Events & Retreats', href: '/resort/events-and-retreats' },
-    ],
+    // children: [
+    //   { label: 'Pool, Spa & Recreation', href: '/resort/pool-spa-recreation' },
+    //   { label: 'Dining & Animals', href: '/resort/dining-and-animals' },
+    //   { label: 'Events & Retreats', href: '/resort/events-and-retreats' },
+    // ],
   },
   { label: 'Our Journey', href: '/journey' },
   { label: 'Gallery', href: '/gallery' },
