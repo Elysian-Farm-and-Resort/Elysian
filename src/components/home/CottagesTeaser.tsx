@@ -41,7 +41,7 @@ export default function CottagesTeaser() {
             custom={0.16}
           >
             <Link href="/own/packages-pricing" className={`btn btn-secondary ${styles.headerCta}`}>
-              View Packages & Pricing
+              View Packages
             </Link>
           </motion.div>
         </div>
