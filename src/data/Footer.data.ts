@@ -14,19 +14,20 @@ export const footerLinkGroups: FooterLinkGroup[] = [
     links: [
       { label: 'Home', href: '/' },
       { label: 'About', href: '/about' },
+      { label: "Own a Cottage", href: '/own' },
       { label: 'The Farm', href: '/farm' },
       { label: 'The Resort', href: '/resort' },
       { label: 'Gallery', href: '/gallery' },
     ],
   },
-  {
-    heading: 'Own a Cottage',
-    links: [
-      { label: 'Packages & Pricing', href: '/own/packages-pricing' },
-      { label: 'Ownership & Trust', href: '/own/ownership-and-trust' },
-      { label: 'Reserve a Tour', href: '/own/reserve' },
-    ],
-  },
+  // {
+  //   heading: 'Own a Cottage',
+  //   links: [
+  //     { label: 'Packages & Pricing', href: '/own/packages-pricing' },
+  //     { label: 'Ownership & Trust', href: '/own/ownership-and-trust' },
+  //     { label: 'Reserve a Tour', href: '/own/reserve' },
+  //   ],
+  // },
   {
     heading: 'Company',
     links: [
