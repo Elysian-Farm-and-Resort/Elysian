@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Work_Sans } from "next/font/google";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+// import Navbar from "@/components/Navbar";
+// import Footer from "@/components/Footer";
 import "./globals.css";
 
 // ---------------------------------------------------------------------------
@@ -28,7 +28,7 @@ const workSans = Work_Sans({
 // ---------------------------------------------------------------------------
 // Site-wide metadata
 // ---------------------------------------------------------------------------
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.elysianfarmsandresort.com";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.elysianfarmsandresort.agrolocale.com";
 const SITE_NAME = "Elysian Farms & Resort";
 const SITE_DESCRIPTION =
   "A managed countryside resort community in Nigeria where you can own a private Aduke cottage, enjoy curated farm-and-resort experiences, and tap into a potential lodging-income pathway.";
@@ -137,11 +137,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Navbar />
+        {/* <Navbar /> */}
         <main>
           {children}
         </main>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import styles from "./Maintenance.module.css";
+import styles from "./MaintenancePage.module.css";
 
 export default function MaintenancePage() {
     return (
